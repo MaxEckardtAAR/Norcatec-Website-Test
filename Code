@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Form</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Submit Form</h2>
+
+<form action="/submit" method="post">
+    <label for="purchase_order_number">Purchase Order Number:</label>
+    <input type="text" id="purchase_order_number" name="purchase_order_number" required>
+
+    <label for="part_number">Part Number:</label>
+    <input type="text" id="part_number" name="part_number" required>
+
+    <label for="nsn_number">NSN Number:</label>
+    <input type="text" id="nsn_number" name="nsn_number" required>
+
+    <label for="contract_number">Contract Number:</label>
+    <input type="text" id="contract_number" name="contract_number" required>
+
+    <label for="issue_type">Issue Type:</label>
+    <select id="issue_type" name="issue_type" required>
+        <option value="">--Select--</option>
+        <option value="delivery_date_update">Delivery Date Update</option>
+        <option value="technical_question">Technical Question</option>
+        <option value="other">Other</option>
+    </select>
+
+    <div id="other_issue" style="display: none;">
+        <label for="other_issue_details">Other Issue Details:</label>
+        <textarea id="other_issue_details" name="other_issue_details"></textarea>
+    </div>
+
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+    document.getElementById("issue_type").addEventListener("change", function() {
+        var otherIssueDiv = document.getElementById("other_issue");
+        if (this.value === "other" || this.value === "technical_question") {
+            otherIssueDiv.style.display = "block";
+        } else {
+            otherIssueDiv.style.display = "none";
+        }
+    });
+</script>
+
+</body>
+</html>
